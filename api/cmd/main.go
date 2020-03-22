@@ -6,6 +6,7 @@ import (
 	"net"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 
 	"github.com/zawawahoge/youtube-information/api/config"
 	"github.com/zawawahoge/youtube-information/api/factory"
@@ -24,5 +25,6 @@ func main() {
 	}
 	grpcServer := grpc.NewServer()
 	apiservice.RegisterCommonServiceServer(grpcServer, f.NewCommonServiceServer())
+	reflection.Register(grpcServer)
 	log.Fatal(grpcServer.Serve(lis))
 }

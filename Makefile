@@ -11,3 +11,7 @@ proto:
 clean:
 	rm -f flutter/lib/protobuf/*.dart
 	rm -rf api/protobuf/*
+
+ping:
+	grpcurl -plaintext localhost:8080 list
+

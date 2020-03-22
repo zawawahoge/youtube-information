@@ -2,6 +2,7 @@ package handler
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo"
@@ -32,6 +33,7 @@ func (h *commonServiceHandler) listSubscribedChannels(c echo.Context) error {
 	if err != nil {
 		return echo.NewHTTPError(http.StatusInternalServerError, err.Error())
 	}
+	fmt.Println(res)
 
 	return json.NewEncoder(c.Response()).Encode(res)
 }
