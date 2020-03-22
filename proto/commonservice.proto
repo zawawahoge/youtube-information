@@ -11,6 +11,17 @@ service CommonService {
       get: "v1/channels"
     };
   };
+  rpc Ping(PingRequest) returns (PingResponse) {
+    option (google.api.http) = {
+      get: "v1/ping"
+    };
+  };
+}
+
+message PingRequest {
+}
+
+message PingResponse {
 }
 
 message ListSubscribedChannelsRequest {

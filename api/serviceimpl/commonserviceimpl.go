@@ -31,3 +31,7 @@ func (s *commonServiceServer) ListSubscribedChannels(ctx context.Context, req *a
 	}
 	return res, nil
 }
+
+func (s *commonServiceServer) Ping(ctx context.Context, req *apiservice.PingRequest) (*apiservice.PingResponse, error) {
+	return &apiservice.PingResponse{}, nil
+}

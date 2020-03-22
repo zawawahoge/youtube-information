@@ -20,6 +20,10 @@ class CommonServiceClient extends $grpc.Client {
       ($0.ListSubscribedChannelsRequest value) => value.writeToBuffer(),
       ($core.List<$core.int> value) =>
           $0.ListSubscribedChannelsResponse.fromBuffer(value));
+  static final _$ping = $grpc.ClientMethod<$0.PingRequest, $0.PingResponse>(
+      '/apiservice.CommonService/Ping',
+      ($0.PingRequest value) => value.writeToBuffer(),
+      ($core.List<$core.int> value) => $0.PingResponse.fromBuffer(value));
 
   CommonServiceClient($grpc.ClientChannel channel, {$grpc.CallOptions options})
       : super(channel, options: options);
@@ -29,6 +33,13 @@ class CommonServiceClient extends $grpc.Client {
           {$grpc.CallOptions options}) {
     final call = $createCall(
         _$listSubscribedChannels, $async.Stream.fromIterable([request]),
+        options: options);
+    return $grpc.ResponseFuture(call);
+  }
+
+  $grpc.ResponseFuture<$0.PingResponse> ping($0.PingRequest request,
+      {$grpc.CallOptions options}) {
+    final call = $createCall(_$ping, $async.Stream.fromIterable([request]),
         options: options);
     return $grpc.ResponseFuture(call);
   }
@@ -47,6 +58,13 @@ abstract class CommonServiceBase extends $grpc.Service {
         ($core.List<$core.int> value) =>
             $0.ListSubscribedChannelsRequest.fromBuffer(value),
         ($0.ListSubscribedChannelsResponse value) => value.writeToBuffer()));
+    $addMethod($grpc.ServiceMethod<$0.PingRequest, $0.PingResponse>(
+        'Ping',
+        ping_Pre,
+        false,
+        false,
+        ($core.List<$core.int> value) => $0.PingRequest.fromBuffer(value),
+        ($0.PingResponse value) => value.writeToBuffer()));
   }
 
   $async.Future<$0.ListSubscribedChannelsResponse> listSubscribedChannels_Pre(
@@ -55,6 +73,13 @@ abstract class CommonServiceBase extends $grpc.Service {
     return listSubscribedChannels(call, await request);
   }
 
+  $async.Future<$0.PingResponse> ping_Pre(
+      $grpc.ServiceCall call, $async.Future<$0.PingRequest> request) async {
+    return ping(call, await request);
+  }
+
   $async.Future<$0.ListSubscribedChannelsResponse> listSubscribedChannels(
       $grpc.ServiceCall call, $0.ListSubscribedChannelsRequest request);
+  $async.Future<$0.PingResponse> ping(
+      $grpc.ServiceCall call, $0.PingRequest request);
 }

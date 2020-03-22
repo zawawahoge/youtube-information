@@ -9,6 +9,48 @@ import 'dart:core' as $core;
 
 import 'package:protobuf/protobuf.dart' as $pb;
 
+class PingRequest extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('PingRequest', package: const $pb.PackageName('apiservice'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  PingRequest._() : super();
+  factory PingRequest() => create();
+  factory PingRequest.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory PingRequest.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  PingRequest clone() => PingRequest()..mergeFromMessage(this);
+  PingRequest copyWith(void Function(PingRequest) updates) => super.copyWith((message) => updates(message as PingRequest));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static PingRequest create() => PingRequest._();
+  PingRequest createEmptyInstance() => create();
+  static $pb.PbList<PingRequest> createRepeated() => $pb.PbList<PingRequest>();
+  @$core.pragma('dart2js:noInline')
+  static PingRequest getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PingRequest>(create);
+  static PingRequest _defaultInstance;
+}
+
+class PingResponse extends $pb.GeneratedMessage {
+  static final $pb.BuilderInfo _i = $pb.BuilderInfo('PingResponse', package: const $pb.PackageName('apiservice'), createEmptyInstance: create)
+    ..hasRequiredFields = false
+  ;
+
+  PingResponse._() : super();
+  factory PingResponse() => create();
+  factory PingResponse.fromBuffer($core.List<$core.int> i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromBuffer(i, r);
+  factory PingResponse.fromJson($core.String i, [$pb.ExtensionRegistry r = $pb.ExtensionRegistry.EMPTY]) => create()..mergeFromJson(i, r);
+  PingResponse clone() => PingResponse()..mergeFromMessage(this);
+  PingResponse copyWith(void Function(PingResponse) updates) => super.copyWith((message) => updates(message as PingResponse));
+  $pb.BuilderInfo get info_ => _i;
+  @$core.pragma('dart2js:noInline')
+  static PingResponse create() => PingResponse._();
+  PingResponse createEmptyInstance() => create();
+  static $pb.PbList<PingResponse> createRepeated() => $pb.PbList<PingResponse>();
+  @$core.pragma('dart2js:noInline')
+  static PingResponse getDefault() => _defaultInstance ??= $pb.GeneratedMessage.$_defaultFor<PingResponse>(create);
+  static PingResponse _defaultInstance;
+}
+
 class ListSubscribedChannelsRequest extends $pb.GeneratedMessage {
   static final $pb.BuilderInfo _i = $pb.BuilderInfo('ListSubscribedChannelsRequest', package: const $pb.PackageName('apiservice'), createEmptyInstance: create)
     ..hasRequiredFields = false
