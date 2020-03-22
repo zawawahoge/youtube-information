@@ -14,19 +14,20 @@ type commonServiceServer struct {
 }
 
 // NewCommonServiceServer is constructor of common service server.
-func NewCommonServiceServer(youtube service.YoutubeServiceServer) service.CommonServiceServer {
+func NewCommonServiceServer(youtube service.YoutubeServiceServer) apiservice.CommonServiceServer {
 	return &commonServiceServer{
 		youtube: youtube,
 	}
 }
 
-func (s *commonServiceServer) ListSubscribedChannels(ctx context.Context, req *service.ListSubscribedChannelsRequest) (*service.ListSubscribedChannelsResponse, error) {
+func (s *commonServiceServer) ListSubscribedChannels(ctx context.Context, req *apiservice.ListSubscribedChannelsRequest) (*apiservice.ListSubscribedChannelsResponse, error) {
 	channel := &model.Channel{
 		ID:   model.ChannelID("123"),
 		Name: model.ChannelName("channel 123"),
 	}
-	res := &service.ListSubscribedChannelsResponse{
-		Channels: []*apiservice.Channel{converter.NewAPIChannel(channel)},
+	apiChannel := converter.NewAPIChannel(channel)
+	res := &apiservice.ListSubscribedChannelsResponse{
+		Channels: []*apiservice.Channel{apiChannel},
 	}
 	return res, nil
 }
