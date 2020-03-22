@@ -1,13 +1,14 @@
 package factory
 
 import (
+	"github.com/zawawahoge/youtube-information/api/protobuf/apiservice"
 	"github.com/zawawahoge/youtube-information/api/service"
 	"github.com/zawawahoge/youtube-information/api/serviceimpl"
 )
 
 // Factory is interface of factory.
 type Factory interface {
-	NewCommonServiceServer() service.CommonServiceServer
+	NewCommonServiceServer() apiservice.CommonServiceServer
 }
 
 type factory struct {
@@ -24,6 +25,6 @@ func New(
 }
 
 // NewCommonServiceServer is constructor of youtube service server with config.
-func (f *factory) NewCommonServiceServer() service.CommonServiceServer {
+func (f *factory) NewCommonServiceServer() apiservice.CommonServiceServer {
 	return serviceimpl.NewCommonServiceServer(f.youtube)
 }
