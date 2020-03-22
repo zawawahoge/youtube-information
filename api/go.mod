@@ -11,5 +11,6 @@ require (
 	github.com/labstack/echo v3.3.10+incompatible
 	github.com/labstack/echo/v4 v4.1.15 // indirect
 	golang.org/x/oauth2 v0.0.0-20200107190931-bf48bf16ab8d
-	google.golang.org/genproto v0.0.0-20200318110522-7735f76e9fa5 // indirect
+	google.golang.org/genproto v0.0.0-20200318110522-7735f76e9fa5
+	google.golang.org/grpc v1.28.0
 )

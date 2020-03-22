@@ -3,8 +3,9 @@ package serviceimpl
 import (
 	"context"
 
-	"github.com/zawawahoge/youtube-information/api/apimodel"
+	"github.com/zawawahoge/youtube-information/api/converter"
 	"github.com/zawawahoge/youtube-information/api/model"
+	"github.com/zawawahoge/youtube-information/api/protobuf/apiservice"
 	"github.com/zawawahoge/youtube-information/api/service"
 )
 
@@ -25,7 +26,7 @@ func (s *commonServiceServer) ListSubscribedChannels(ctx context.Context, req *s
 		Name: model.ChannelName("channel 123"),
 	}
 	res := &service.ListSubscribedChannelsResponse{
-		Channels: []*apimodel.Channel{apimodel.NewAPIChannel(channel)},
+		Channels: []*apiservice.Channel{converter.NewAPIChannel(channel)},
 	}
 	return res, nil
 }

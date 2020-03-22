@@ -1,0 +1,27 @@
+syntax = "proto3";
+package apiservice;
+
+option go_package = "apiservice";
+
+import "google/api/annotations.proto";
+
+service CommonService {
+  rpc ListSubscribedChannels(ListSubscribedChannelsRequest) returns (ListSubscribedChannelsResponse) {
+    option (google.api.http) = {
+      get: "v1/channels"
+    };
+  };
+}
+
+message ListSubscribedChannelsRequest {
+}
+
+message ListSubscribedChannelsResponse {
+  repeated Channel channels = 1;
+}
+
+message Channel {
+  string id = 1;
+  string name = 2;
+}
+

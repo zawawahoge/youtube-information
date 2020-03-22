@@ -3,7 +3,7 @@ package service
 import (
 	"context"
 
-	"github.com/zawawahoge/youtube-information/api/apimodel"
+	"github.com/zawawahoge/youtube-information/api/protobuf/apiservice"
 )
 
 // CommonServiceServer is a common server.
@@ -17,5 +17,5 @@ type ListSubscribedChannelsRequest struct {
 
 // ListSubscribedChannelsResponse is a response of listing subscribed channels.
 type ListSubscribedChannelsResponse struct {
-	Channels []*apimodel.Channel `json:"channels"`
+	Channels []*apiservice.Channel `json:"channels"`
 }
