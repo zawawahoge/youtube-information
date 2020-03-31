@@ -2,11 +2,18 @@
 
 all: clean proto
 
+init:
+	go get -u -v github.com/grpc-ecosystem/grpc-gateway/protoc-gen-grpc-gateway
+	go get -u -v github.com/grpc-ecosystem/grpc-gateway/protoc-gen-swagger
+	go get -u -v github.com/golang/protobuf/protoc-gen-go
+
 proto:
 	protoc -I./proto \
 		-I${GOPATH}/pkg/mod/github.com/grpc-ecosystem/grpc-gateway@v1.13.0/third_party/googleapis \
 		--dart_out=grpc:flutter/lib/protobuf \
-		--go_out=plugins=grpc:api proto/*.proto
+		--go_out=plugins=grpc:api \
+		--grpc-gateway_out=logtostderr=true:api \
+		proto/*.proto
 
 clean:
 	rm -f flutter/lib/protobuf/*.dart
