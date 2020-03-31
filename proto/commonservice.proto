@@ -8,12 +8,12 @@ import "google/api/annotations.proto";
 service CommonService {
   rpc ListSubscribedChannels(ListSubscribedChannelsRequest) returns (ListSubscribedChannelsResponse) {
     option (google.api.http) = {
-      get: "v1/channels"
+      get: "/v1/channels"
     };
   };
   rpc Ping(PingRequest) returns (PingResponse) {
     option (google.api.http) = {
-      get: "v1/ping"
+      get: "/v1/ping"
     };
   };
 }
