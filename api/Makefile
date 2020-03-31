@@ -3,4 +3,4 @@ init:
 	go mod download
 
 run:
-	go run ./cmd/*.go
+	go run ./cmd/server/*.go
