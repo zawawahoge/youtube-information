@@ -5,3 +5,6 @@ init:
 
 run:
 	go run ./cmd/server/*.go
+
+build:
+	docker build -t youtube-information .
