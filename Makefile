@@ -8,7 +8,7 @@ init:
 proto:
 	protoc -I./proto \
 		--go_out=plugins=grpc:api \
-		--grpc-web_out=import_style=commonjs,mode=grpcwebtext:frontend \
+		--grpc-web_out=import_style=typescript,mode=grpcwebtext:frontend/proto \
 		proto/*.proto
 
 clean:
