@@ -12,7 +12,6 @@ proto:
 		proto/*.proto
 
 clean:
-	rm -f flutter/lib/protobuf/*.dart
 	rm -rf api/protobuf/*
 
 ping:
