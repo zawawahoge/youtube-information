@@ -8,11 +8,12 @@ init:
 proto:
 	protoc -I./proto \
 		--go_out=plugins=grpc:api \
-		--grpc-web_out=import_style=typescript,mode=grpcwebtext:frontend/proto \
+		--grpc-web_out=import_style=typescript,mode=grpcwebtext:frontend/src/proto \
 		proto/*.proto
 
 clean:
-	rm -rf api/protobuf/*
+	rm -r api/protobuf/*
+	rm -r frontend/src/proto/*
 
 ping:
 	grpcurl -plaintext localhost:8080 list
