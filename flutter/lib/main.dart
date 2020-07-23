@@ -37,16 +37,16 @@ class Home extends StatelessWidget {
                     child: Left()),
               ),
             ),
-            Expanded(
-                flex: 2,
-                child: Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Container(
-                      decoration: BoxDecoration(
-                          color: Color(0xFFfbfbfb),
-                          borderRadius: BorderRadius.circular(20)),
-                      child: Right()),
-                ))
+            // Expanded(
+            //     flex: 2,
+            //     child: Padding(
+            //       padding: const EdgeInsets.all(8.0),
+            //       child: Container(
+            //           decoration: BoxDecoration(
+            //               color: Color(0xFFfbfbfb),
+            //               borderRadius: BorderRadius.circular(20)),
+            //           child: Right()),
+            //     ))
           ],
         ),
       ),

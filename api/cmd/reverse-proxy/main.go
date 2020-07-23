@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/golang/glog"
+	"github.com/gorilla/handlers"
 	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
@@ -27,7 +28,13 @@ func run() error {
 		log.Fatalf("failed to run grpc-gateway; err=%#v", err)
 	}
 
-	return http.ListenAndServe(":5000", mux)
+	newMux := handlers.CORS(
+		handlers.AllowedMethods([]string{"GET", "POST", "OPTIONS"}),
+		handlers.AllowedOrigins([]string{"*"}),
+		handlers.AllowedHeaders([]string{"content-type", "x-foobar-key"}),
+	)(mux)
+
+	return http.ListenAndServe(":5000", newMux)
 }
 
 func main() {
