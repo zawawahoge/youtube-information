@@ -1,0 +1,9 @@
+version: '3'
+services:
+    server:
+        build: .
+    envoy:
+        image: envoyproxy/envoy:v1.15.0
+        network_mode: host
+        volumes:
+            - ./envoy.yaml:/etc/envoy/envoy.yaml

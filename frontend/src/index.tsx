@@ -2,6 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import './proto';
+import { prototype } from 'stream';
+import { CommonServiceClient } from './proto/CommonserviceServiceClientPb';
+import { PingRequest, PingResponse, ListSubscribedChannelsRequest, ListSubscribedChannelsResponse } from './proto/commonservice_pb';
 
 interface Props {
 }
@@ -19,34 +23,25 @@ class Clock extends React.Component<Props, State> {
 
   componentDidMount() {
     console.log("componentDidMound");
-    this.timeID = setInterval(
-      () => this.tick(),
-      1000,
-    );
-    console.log(this.timeID);
+
+    const commonService = new CommonServiceClient("http://localhost:8000");
+
+    const req = new ListSubscribedChannelsRequest();
+    const call = commonService.listSubscribedChannels(req, {}, (err, resp: ListSubscribedChannelsResponse) => {
+      console.log(resp.getChannelsList());
+    });
+
   }
   
   componentDidUpdate() {
     console.log("componentDidUpdate" + this.state.date);
   }
 
-  tick() {
-    this.setState({
-      date: new Date(),
-    });
-  }
-
-  clickedEventHandler = () => {
-    alert("clicked " + this.state.date);
-  }
-  
   render() {
     console.log("render");
     return (
       <div>
         <h1>Hello</h1>
-        <h2>It is {this.state.date.toUTCString()}</h2>
-        <button onClick={this.clickedEventHandler}>Click me</button>
       </div>
     );
   }
