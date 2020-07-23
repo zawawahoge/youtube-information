@@ -8,6 +8,7 @@ import (
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/reflection"
 
+	"github.com/sirupsen/logrus"
 	"github.com/zawawahoge/youtube-information/api/config"
 	"github.com/zawawahoge/youtube-information/api/factory"
 	"github.com/zawawahoge/youtube-information/api/protobuf/apiservice"
@@ -15,6 +16,8 @@ import (
 )
 
 func main() {
+	logger := logrus.New()
+	logger.Println("gRPC server is initialized...")
 	youtubeConfig := config.MustConfigFromEnv()
 	youtube := serviceimpl.NewYoutubeServiceServer(youtubeConfig)
 	f := factory.New(youtube)
