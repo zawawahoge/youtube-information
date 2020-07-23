@@ -3,19 +3,9 @@ package apiservice;
 
 option go_package = "protobuf/apiservice";
 
-import "google/api/annotations.proto";
-
 service CommonService {
-  rpc ListSubscribedChannels(ListSubscribedChannelsRequest) returns (ListSubscribedChannelsResponse) {
-    option (google.api.http) = {
-      get: "/v1/channels"
-    };
-  };
-  rpc Ping(PingRequest) returns (PingResponse) {
-    option (google.api.http) = {
-      get: "/v1/ping"
-    };
-  };
+  rpc ListSubscribedChannels(ListSubscribedChannelsRequest) returns (ListSubscribedChannelsResponse);
+  rpc Ping(PingRequest) returns (PingResponse);
 }
 
 message PingRequest {
