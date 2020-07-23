@@ -70,6 +70,7 @@ func local_request_CommonService_Ping_0(ctx context.Context, marshaler runtime.M
 // RegisterCommonServiceHandlerServer registers the http handlers for service CommonService to "mux".
 // UnaryRPC     :call CommonServiceServer directly.
 // StreamingRPC :currently unsupported pending https://github.com/grpc/grpc-go/issues/906.
+// Note that using this registration option will cause many gRPC library features (such as grpc.SendHeader, etc) to stop working. Consider using RegisterCommonServiceHandlerFromEndpoint instead.
 func RegisterCommonServiceHandlerServer(ctx context.Context, mux *runtime.ServeMux, server CommonServiceServer) error {
 
 	mux.Handle("GET", pattern_CommonService_ListSubscribedChannels_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
