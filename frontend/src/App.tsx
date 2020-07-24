@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useEffect, useState} from 'react';
 import './App.css';
-import Othello from './Othello';
+import { ListSubscribedChannelsRequest, ListSubscribedChannelsResponse, Channel } from './proto/commonservice_pb';
+import { CommonServiceClient } from './proto/commonservice_grpc_web_pb';
+import ChannelList from './ChannelList';
 
 function App() {
+  const [channels, setChannels] = useState<Channel[]>([]);
+
+  useEffect(() => {
+
+    const commonService = new CommonServiceClient("http://localhost:8080");
+
+    const req = new ListSubscribedChannelsRequest();
+    const call = commonService.listSubscribedChannels(req, {}, (err, resp: ListSubscribedChannelsResponse) => {
+      if (err) {
+        console.log(err.code);
+        console.log(err.message);
+      } else {
+        var channels = resp.getChannelsList()
+        channels.forEach(c => {
+          console.log("ID", c.getId(), c.getId().length);
+          console.log("Name", c.getName());
+        });
+        setChannels(channels);
+      }
+    });
+    call.on("status", function(status) {
+      console.log(status.code);
+    })
+  });
   return (
     <div className="App">
-      <header className="App-header">
-        <Othello></Othello>
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ChannelList channels={channels}></ChannelList>
     </div>
   );
 }

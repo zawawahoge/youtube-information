@@ -6,14 +6,13 @@ ENV GOPATH=/go \
 
 WORKDIR ${PROJECT_ROOT}
 
-COPY . .
+COPY go.mod .
+COPY go.sum .
+RUN go mod download
+
+COPY . . 
+
 CMD ["go", "run", "./cmd/server"]
-
-# COPY go.mod .
-# COPY go.sum .
-# RUN go mod download
-
-# COPY . . 
 
 # RUN CGO_ENABLED=0 GOOS=linux go build -o app ./cmd/server
 

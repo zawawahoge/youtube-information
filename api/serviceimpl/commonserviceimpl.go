@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 
+	"github.com/sirupsen/logrus"
 	log "github.com/sirupsen/logrus"
 	"github.com/zawawahoge/youtube-information/api/converter"
 	"github.com/zawawahoge/youtube-information/api/model"
@@ -23,15 +24,22 @@ func NewCommonServiceServer(youtube service.YoutubeServiceServer) apiservice.Com
 }
 
 func (s *commonServiceServer) ListSubscribedChannels(ctx context.Context, req *apiservice.ListSubscribedChannelsRequest) (*apiservice.ListSubscribedChannelsResponse, error) {
-	channel := &model.Channel{
-		ID:   model.ChannelID("123"),
-		Name: model.ChannelName("channel 123"),
+	logger := logrus.New()
+	logger.Println(req)
+
+	var channels []*model.Channel
+	var apiChannels []*apiservice.Channel
+	for i := 0; i < 100; i++ {
+		c := &model.Channel{
+			ID: model.ChannelID(fmt.Sprintf("id-%d", i)),
+		}
+		channels = append(channels, c)
+		apiChannels = append(apiChannels, converter.NewAPIChannel(c))
 	}
-	apiChannel := converter.NewAPIChannel(channel)
 	res := &apiservice.ListSubscribedChannelsResponse{
-		Channels: []*apiservice.Channel{apiChannel},
+		Channels: apiChannels,
 	}
-	fmt.Println(ctx)
+	logger.Println(res)
 	return res, nil
 }
 
