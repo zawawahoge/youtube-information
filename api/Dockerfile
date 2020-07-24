@@ -6,20 +6,23 @@ ENV GOPATH=/go \
 
 WORKDIR ${PROJECT_ROOT}
 
-COPY go.mod .
-COPY go.sum .
-RUN go mod download
+COPY . .
+CMD ["go", "run", "./cmd/server"]
 
-COPY . . 
+# COPY go.mod .
+# COPY go.sum .
+# RUN go mod download
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o app ./cmd/server
+# COPY . . 
 
-FROM alpine:latest
+# RUN CGO_ENABLED=0 GOOS=linux go build -o app ./cmd/server
 
-ENV BUILDER_ROOT /go/src/github.com/zawawahoge/youtube-information/api
-WORKDIR /root/
+# FROM alpine:latest
 
-COPY --from=builder ${BUILDER_ROOT}/app .
-COPY --from=builder ${BUILDER_ROOT}/.env .
+# ENV BUILDER_ROOT /go/src/github.com/zawawahoge/youtube-information/api
+# WORKDIR /root/
 
-CMD ["./app"]
+# COPY --from=builder ${BUILDER_ROOT}/app .
+# COPY --from=builder ${BUILDER_ROOT}/.env .
+
+# CMD ["./app"]

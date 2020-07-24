@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import { ListSubscribedChannelsRequest, ListSubscribedChannelsResponse, Channel } from './proto/commonservice_pb';
 import { CommonServiceClient } from './proto/commonservice_grpc_web_pb';
-import { ListSubscribedChannelsRequest, ListSubscribedChannelsResponse } from './proto/commonservice_pb';
 
 interface Props {
 }
@@ -22,12 +22,26 @@ class Clock extends React.Component<Props, State> {
   componentDidMount() {
     console.log("componentDidMound");
 
-    const commonService = new CommonServiceClient("http://localhost:8000");
+    const commonService = new CommonServiceClient("http://localhost:8080");
 
     const req = new ListSubscribedChannelsRequest();
     const call = commonService.listSubscribedChannels(req, {}, (err, resp: ListSubscribedChannelsResponse) => {
-      console.log(resp.getChannelsList());
+      if (err) {
+        console.log(err.code);
+        console.log(err.message);
+      } else {
+        // console.log(resp.getChannelsList());
+        var channels: Channel[];
+        channels = resp.getChannelsList()
+        channels.forEach(c => {
+          console.log("ID", c.getId(), c.getId().length);
+          console.log("Name", c.getName());
+        });
+      }
     });
+    call.on("status", function(status) {
+      console.log(status.code);
+    })
 
   }
   

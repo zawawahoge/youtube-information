@@ -20,9 +20,6 @@
     "jsx": "react"
   },
   "include": [
-    "src",
-    "proto/commonservice_grpc_web_pb.js",
-    "proto/commonservice_grpc_web_pb.d.ts",
-    "proto/commonservice_pb.d.ts",
-  ],
+    "src"
+  ]
 }

@@ -1,9 +1,30 @@
 version: '3'
 services:
     server:
-        build: .
+        build:
+            context: .
+        ports:
+            - "9090:9090"
+        networks:
+            envoymesh:
+                aliases:
+                    - backend-server
+    
     envoy:
         image: envoyproxy/envoy:v1.15.0
-        network_mode: host
+        command: /usr/local/bin/envoy -c /etc/server-envoy-proxy.yaml --service-cluster backend-proxy
         volumes:
-            - ./envoy.yaml:/etc/envoy/envoy.yaml
+            - ./envoy.yaml:/etc/server-envoy-proxy.yaml
+        networks:
+            envoymesh:
+                aliases:
+                    - backend-proxy
+        expose:
+            - "8080"
+            - "8881"
+        ports:
+            - "8080:8080"
+            - "8881:8881"
+
+networks:
+    envoymesh: {}

@@ -17,17 +17,17 @@ import (
 
 func main() {
 	logger := logrus.New()
-	logger.Println("gRPC server is initialized...")
 	youtubeConfig := config.MustConfigFromEnv()
 	youtube := serviceimpl.NewYoutubeServiceServer(youtubeConfig)
 	f := factory.New(youtube)
 
-	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", 8080))
+	lis, err := net.Listen("tcp", fmt.Sprintf(":%d", 9090))
 	if err != nil {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	grpcServer := grpc.NewServer()
 	apiservice.RegisterCommonServiceServer(grpcServer, f.NewCommonServiceServer())
 	reflection.Register(grpcServer)
+	logger.Println("gRPC server is initialized...")
 	log.Fatal(grpcServer.Serve(lis))
 }
