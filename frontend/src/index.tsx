@@ -2,10 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
-import './proto';
-import { prototype } from 'stream';
-import { CommonServiceClient } from './proto/CommonserviceServiceClientPb';
-import { PingRequest, PingResponse, ListSubscribedChannelsRequest, ListSubscribedChannelsResponse } from './proto/commonservice_pb';
+import { CommonServiceClient } from './proto/commonservice_grpc_web_pb';
+import { ListSubscribedChannelsRequest, ListSubscribedChannelsResponse } from './proto/commonservice_pb';
 
 interface Props {
 }
