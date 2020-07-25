@@ -7,7 +7,7 @@ type Props = {
 
 function ChannelList(props: Props) {
     const lists = props.channels.map((channel) => {
-        return <li>ID: {channel.getId()}  NAME: {channel.getName()}</li>
+        return <li><button>ID: {channel.getId()}  NAME: {channel.getName()}</button></li>
     })
     return (
         <ul>
