@@ -10,6 +10,7 @@ proto:
 	protoc -I./proto \
 		--go_out=plugins=grpc:api \
 		--js_out=import_style=commonjs:${FRONT_OUT_DIR} \
+		--descriptor_set_out=api_descriptor.pb \
 		--grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:${FRONT_OUT_DIR} \
 		proto/*.proto
 
