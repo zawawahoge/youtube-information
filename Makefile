@@ -8,6 +8,7 @@ init:
 FRONT_OUT_DIR=frontend/src/proto
 proto:
 	protoc -I./proto \
+		--include_imports \
 		--go_out=plugins=grpc:api \
 		--js_out=import_style=commonjs:${FRONT_OUT_DIR} \
 		--descriptor_set_out=api_descriptor.pb \

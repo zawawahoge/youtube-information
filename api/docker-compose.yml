@@ -11,19 +11,21 @@ services:
                     - backend-server
     
     envoy:
-        image: envoyproxy/envoy:v1.15.0
-        command: /usr/local/bin/envoy -c /etc/server-envoy-proxy.yaml --service-cluster backend-proxy
-        volumes:
-            - ./envoy.yaml:/etc/server-envoy-proxy.yaml
+        # image: envoyproxy/envoy:v1.15.0
+        build:
+            context: .
+            dockerfile: "Dockerfile.proxy"
+        # command: envoy -c /etc/envoy.yaml --service-cluster backend-proxy
+        # command: envoy -c /etc/envoy/envoy.yaml
+        # command: echo hoge
+        # volumes:
+        #     - ./envoy.yaml:/etc/envoy.yaml
         networks:
             envoymesh:
                 aliases:
                     - backend-proxy
-        expose:
-            - "8080"
-            - "8881"
         ports:
-            - "8080:8080"
+            - "80:8080"
             - "8881:8881"
 
 networks:

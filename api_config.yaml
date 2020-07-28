@@ -27,5 +27,5 @@ name: api.endpoints.helical-disk-284416.cloud.goog
 # API title to appear in the user interface (Google Cloud Console).
 title: Youtube Information gRPC API
 apis:
-- name: apiservice.CommonService.ListSubscribedChannels
-- name: apiservice.CommonService.Ping
+- name: endpoints.examples.bookstore.Bookstore
+- name: apiservice.CommonService
