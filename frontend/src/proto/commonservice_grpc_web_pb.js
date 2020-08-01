@@ -6,17 +6,14 @@
 
 // GENERATED CODE -- DO NOT EDIT!
 
-
 /* eslint-disable */
 // @ts-nocheck
 
-
-
 const grpc = {};
-grpc.web = require('grpc-web');
+grpc.web = require("grpc-web");
 
 const proto = {};
-proto.apiservice = require('./commonservice_pb.js');
+proto.apiservice = require("./commonservice_pb.js");
 
 /**
  * @param {string} hostname
@@ -26,10 +23,13 @@ proto.apiservice = require('./commonservice_pb.js');
  * @struct
  * @final
  */
-proto.apiservice.CommonServiceClient =
-    function(hostname, credentials, options) {
+proto.apiservice.CommonServiceClient = function (
+  hostname,
+  credentials,
+  options
+) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options["format"] = "text";
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -40,9 +40,7 @@ proto.apiservice.CommonServiceClient =
    * @private @const {string} The hostname
    */
   this.hostname_ = hostname;
-
 };
-
 
 /**
  * @param {string} hostname
@@ -52,10 +50,13 @@ proto.apiservice.CommonServiceClient =
  * @struct
  * @final
  */
-proto.apiservice.CommonServicePromiseClient =
-    function(hostname, credentials, options) {
+proto.apiservice.CommonServicePromiseClient = function (
+  hostname,
+  credentials,
+  options
+) {
   if (!options) options = {};
-  options['format'] = 'text';
+  options["format"] = "text";
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -66,9 +67,7 @@ proto.apiservice.CommonServicePromiseClient =
    * @private @const {string} The hostname
    */
   this.hostname_ = hostname;
-
 };
-
 
 /**
  * @const
@@ -77,7 +76,7 @@ proto.apiservice.CommonServicePromiseClient =
  *   !proto.apiservice.ListSubscribedChannelsResponse>}
  */
 const methodDescriptor_CommonService_ListSubscribedChannels = new grpc.web.MethodDescriptor(
-  '/apiservice.CommonService/ListSubscribedChannels',
+  "/apiservice.CommonService/ListSubscribedChannels",
   grpc.web.MethodType.UNARY,
   proto.apiservice.ListSubscribedChannelsRequest,
   proto.apiservice.ListSubscribedChannelsResponse,
@@ -85,12 +84,11 @@ const methodDescriptor_CommonService_ListSubscribedChannels = new grpc.web.Metho
    * @param {!proto.apiservice.ListSubscribedChannelsRequest} request
    * @return {!Uint8Array}
    */
-  function(request) {
+  function (request) {
     return request.serializeBinary();
   },
   proto.apiservice.ListSubscribedChannelsResponse.deserializeBinary
 );
-
 
 /**
  * @const
@@ -104,12 +102,11 @@ const methodInfo_CommonService_ListSubscribedChannels = new grpc.web.AbstractCli
    * @param {!proto.apiservice.ListSubscribedChannelsRequest} request
    * @return {!Uint8Array}
    */
-  function(request) {
+  function (request) {
     return request.serializeBinary();
   },
   proto.apiservice.ListSubscribedChannelsResponse.deserializeBinary
 );
-
 
 /**
  * @param {!proto.apiservice.ListSubscribedChannelsRequest} request The
@@ -121,16 +118,19 @@ const methodInfo_CommonService_ListSubscribedChannels = new grpc.web.AbstractCli
  * @return {!grpc.web.ClientReadableStream<!proto.apiservice.ListSubscribedChannelsResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.apiservice.CommonServiceClient.prototype.listSubscribedChannels =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/apiservice.CommonService/ListSubscribedChannels',
-      request,
-      metadata || {},
-      methodDescriptor_CommonService_ListSubscribedChannels,
-      callback);
+proto.apiservice.CommonServiceClient.prototype.listSubscribedChannels = function (
+  request,
+  metadata,
+  callback
+) {
+  return this.client_.rpcCall(
+    this.hostname_ + "/apiservice.CommonService/ListSubscribedChannels",
+    request,
+    metadata || {},
+    methodDescriptor_CommonService_ListSubscribedChannels,
+    callback
+  );
 };
-
 
 /**
  * @param {!proto.apiservice.ListSubscribedChannelsRequest} request The
@@ -140,15 +140,17 @@ proto.apiservice.CommonServiceClient.prototype.listSubscribedChannels =
  * @return {!Promise<!proto.apiservice.ListSubscribedChannelsResponse>}
  *     A native promise that resolves to the response
  */
-proto.apiservice.CommonServicePromiseClient.prototype.listSubscribedChannels =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/apiservice.CommonService/ListSubscribedChannels',
-      request,
-      metadata || {},
-      methodDescriptor_CommonService_ListSubscribedChannels);
+proto.apiservice.CommonServicePromiseClient.prototype.listSubscribedChannels = function (
+  request,
+  metadata
+) {
+  return this.client_.unaryCall(
+    this.hostname_ + "/apiservice.CommonService/ListSubscribedChannels",
+    request,
+    metadata || {},
+    methodDescriptor_CommonService_ListSubscribedChannels
+  );
 };
-
 
 /**
  * @const
@@ -157,7 +159,7 @@ proto.apiservice.CommonServicePromiseClient.prototype.listSubscribedChannels =
  *   !proto.apiservice.PingResponse>}
  */
 const methodDescriptor_CommonService_Ping = new grpc.web.MethodDescriptor(
-  '/apiservice.CommonService/Ping',
+  "/apiservice.CommonService/Ping",
   grpc.web.MethodType.UNARY,
   proto.apiservice.PingRequest,
   proto.apiservice.PingResponse,
@@ -165,12 +167,11 @@ const methodDescriptor_CommonService_Ping = new grpc.web.MethodDescriptor(
    * @param {!proto.apiservice.PingRequest} request
    * @return {!Uint8Array}
    */
-  function(request) {
+  function (request) {
     return request.serializeBinary();
   },
   proto.apiservice.PingResponse.deserializeBinary
 );
-
 
 /**
  * @const
@@ -184,12 +185,11 @@ const methodInfo_CommonService_Ping = new grpc.web.AbstractClientBase.MethodInfo
    * @param {!proto.apiservice.PingRequest} request
    * @return {!Uint8Array}
    */
-  function(request) {
+  function (request) {
     return request.serializeBinary();
   },
   proto.apiservice.PingResponse.deserializeBinary
 );
-
 
 /**
  * @param {!proto.apiservice.PingRequest} request The
@@ -201,16 +201,19 @@ const methodInfo_CommonService_Ping = new grpc.web.AbstractClientBase.MethodInfo
  * @return {!grpc.web.ClientReadableStream<!proto.apiservice.PingResponse>|undefined}
  *     The XHR Node Readable Stream
  */
-proto.apiservice.CommonServiceClient.prototype.ping =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
-      '/apiservice.CommonService/Ping',
-      request,
-      metadata || {},
-      methodDescriptor_CommonService_Ping,
-      callback);
+proto.apiservice.CommonServiceClient.prototype.ping = function (
+  request,
+  metadata,
+  callback
+) {
+  return this.client_.rpcCall(
+    this.hostname_ + "/apiservice.CommonService/Ping",
+    request,
+    metadata || {},
+    methodDescriptor_CommonService_Ping,
+    callback
+  );
 };
-
 
 /**
  * @param {!proto.apiservice.PingRequest} request The
@@ -220,15 +223,16 @@ proto.apiservice.CommonServiceClient.prototype.ping =
  * @return {!Promise<!proto.apiservice.PingResponse>}
  *     A native promise that resolves to the response
  */
-proto.apiservice.CommonServicePromiseClient.prototype.ping =
-    function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
-      '/apiservice.CommonService/Ping',
-      request,
-      metadata || {},
-      methodDescriptor_CommonService_Ping);
+proto.apiservice.CommonServicePromiseClient.prototype.ping = function (
+  request,
+  metadata
+) {
+  return this.client_.unaryCall(
+    this.hostname_ + "/apiservice.CommonService/Ping",
+    request,
+    metadata || {},
+    methodDescriptor_CommonService_Ping
+  );
 };
 
-
 module.exports = proto.apiservice;
-
