@@ -1,0 +1,80 @@
+{
+  "extends": [
+    "react-app",
+    "airbnb",
+    "prettier",
+    "prettier/react",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "react",
+    "prettier",
+    "@typescript-eslint"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "src"
+        ],
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    }
+  },
+  "rules": {
+    "react/jsx-filename-extension": "off",
+    "react/prop-types": 0,
+    "no-underscore-dangle": 0,
+    "import/extensions": [1, "never"],
+    "import/imports-first": [
+      "error",
+      "absolute-first"
+    ],
+    "import/newline-after-import": "error",
+    "@typescript-eslint/indent": "off",
+    "react/destructuring-assignment": "off",
+    "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/prefer-interface": "off",
+    "@typescript-eslint/no-empty-function": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": [
+          "Link"
+        ],
+        "specialLink": [
+          "to"
+        ]
+      }
+    ],
+    "jsx-a11y/label-has-associated-control": "off",
+    "jsx-a11y/label-has-for": "off",
+    "react/no-unused-prop-types": "off",
+    "object-curly-newline": "off",
+    "consistent-return": "off",
+    "no-unused-expressions": "off",
+    "no-param-reassign": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "react/jsx-props-no-spreading": "off",
+    "default-case": "off",
+    "@typescript-eslint/ban-ts-ignore": "off",
+    "jsx-a11y/control-has-associated-label": "off",
+    "react/jsx-curly-brace-presence": "off",
+    "react/state-in-constructor": [2, "never"]
+  },
+  "globals": {
+    "window": true,
+    "document": true,
+    "localStorage": true,
+    "FormData": true,
+    "FileReader": true,
+    "Blob": true,
+    "navigator": true
+  }
+}

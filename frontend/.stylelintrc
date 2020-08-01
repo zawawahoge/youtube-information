@@ -1,0 +1,12 @@
+{
+  "processors": ["stylelint-processor-styled-components"],
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-styled-components",
+    "stylelint-config-property-sort-order-smacss"
+  ],
+  "rules": {
+    "no-descending-specificity": null,
+    "declaration-colon-newline-after": null,
+  }
+}
