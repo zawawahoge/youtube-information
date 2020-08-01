@@ -4,7 +4,7 @@ init:
 	go get -u -v github.com/golang/protobuf/protoc-gen-go
 
 run:
-	go run ./cmd/server/*.go
+	go run main.go
 
 build:
 	docker build -t youtube-information .

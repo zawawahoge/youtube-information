@@ -23,7 +23,7 @@ function App() {
     //   }
     // })
 
-    const commonService = new CommonServiceClient("http://35.189.136.0");
+    const commonService = new CommonServiceClient("https://helical-disk-284416.uc.r.appspot.com");
 
     const req = new ListSubscribedChannelsRequest();
     const call = commonService.listSubscribedChannels(req, {}, (err, resp: ListSubscribedChannelsResponse) => {

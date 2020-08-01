@@ -1,11 +1,16 @@
 package config
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/joho/godotenv"
 )
+
+// Config is config of app.
+type Config struct {
+	Port string
+	YoutubeConfig
+}
 
 // YoutubeConfig is config of youtube client.
 type YoutubeConfig struct {
@@ -15,19 +20,13 @@ type YoutubeConfig struct {
 }
 
 // MustConfigFromEnv is method to get config from environment variables. If it fails, the server is panic.
-func MustConfigFromEnv() YoutubeConfig {
+func MustConfigFromEnv() Config {
 	godotenv.Load()
-	return YoutubeConfig{
-		ClientID:     mustReadFromEnv("YOUTUBE_CLIENT_ID"),
-		ClientSecret: mustReadFromEnv("YOUTUBE_CLIENT_SECRET"),
-		RedirectURL:  mustReadFromEnv("YOUTUBE_REDIRECT_URL"),
+	return Config{
+		YoutubeConfig: YoutubeConfig{
+			ClientID:     os.Getenv("YOUTUBE_CLIENT_ID"),
+			ClientSecret: os.Getenv("YOUTUBE_CLIENT_SECRET"),
+			RedirectURL:  os.Getenv("YOUTUBE_REDIRECT_URL"),
+		},
 	}
-}
-
-func mustReadFromEnv(key string) string {
-	val := os.Getenv(key)
-	if val == "" {
-		panic(fmt.Sprintf("failed to get environment variable; key = %s", key))
-	}
-	return val
 }

@@ -4,10 +4,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"os"
 
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/grpclog"
 	"google.golang.org/grpc/reflection"
 
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
@@ -20,26 +18,30 @@ import (
 
 func main() {
 	logger := logrus.New()
-	youtubeConfig := config.MustConfigFromEnv()
-	youtube := serviceimpl.NewYoutubeServiceServer(youtubeConfig)
+	conf := config.MustConfigFromEnv()
+
+	if conf.Port == "" {
+		port = "9090"
+		log.Printf("Defaulting to port %s", port)
+	}
+
+	youtube := serviceimpl.NewYoutubeServiceServer(conf.YoutubeConfig)
 	f := factory.New(youtube)
 
 	grpcServer := grpc.NewServer()
 	apiservice.RegisterCommonServiceServer(grpcServer, f.NewCommonServiceServer())
 	reflection.Register(grpcServer)
-	grpclog.SetLogger(log.New(os.Stdout, "exampleserver: ", log.LstdFlags))
 
 	wrappedGrpc := grpcweb.WrapServer(grpcServer)
 	handler := func(resp http.ResponseWriter, req *http.Request) {
 		allowCors(resp, req)
 		wrappedGrpc.ServeHTTP(resp, req)
 	}
-	port := 9090
 	httpServer := http.Server{
-		Addr:    fmt.Sprintf(":%d", port),
+		Addr:    fmt.Sprintf(":%s", port),
 		Handler: http.HandlerFunc(handler),
 	}
-	logger.Printf("Start listening and serving at port = %d", port)
+	logger.Printf("Start listening and serving at port = %s", port)
 	if err := httpServer.ListenAndServe(); err != nil {
 		logger.Fatal(err.Error())
 	}
