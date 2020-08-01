@@ -20,7 +20,8 @@ func main() {
 	logger := logrus.New()
 	conf := config.MustConfigFromEnv()
 
-	if conf.Port == "" {
+	port := conf.Port
+	if port == "" {
 		port = "9090"
 		log.Printf("Defaulting to port %s", port)
 	}
