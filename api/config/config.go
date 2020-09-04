@@ -10,6 +10,7 @@ import (
 type Config struct {
 	Port string
 	YoutubeConfig
+	ProjectID string
 }
 
 // YoutubeConfig is config of youtube client.
@@ -28,5 +29,6 @@ func MustConfigFromEnv() Config {
 			ClientSecret: os.Getenv("YOUTUBE_CLIENT_SECRET"),
 			RedirectURL:  os.Getenv("YOUTUBE_REDIRECT_URL"),
 		},
+		ProjectID: os.Getenv("PROJECT_ID"),
 	}
 }
