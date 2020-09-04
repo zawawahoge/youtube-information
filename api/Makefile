@@ -8,3 +8,6 @@ run:
 
 encrypt:
 	gcloud kms encrypt --location=global --keyring=api --plaintext-file=firebase-service-account.json --ciphertext-file=firebase-service-account.json.enc --key=api-server
+
+decrypt:
+	gcloud kms decrypt --location=global --keyring=api --plaintext-file=firebase-service-account.json --ciphertext-file=firebase-service-account.json.enc --key=api-server
