@@ -18,10 +18,7 @@ function ChannelList(props: Props) {
     );
   });
   return (
-    <div>
-      {lists.length === 0 ? <div>No Channels</div> : null}
-      <ul>{lists}</ul>
-    </div>
+    <div>{lists.length === 0 ? <div>No Channels</div> : <ul>{lists}</ul>}</div>
   );
 }
 

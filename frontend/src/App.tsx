@@ -14,13 +14,13 @@ import { BrowserRouter } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: config.FirebaseAPIKey,
-  authDomain: "information-56b87.firebaseapp.com",
-  databaseURL: "https://information-56b87.firebaseio.com",
-  projectId: "information-56b87",
-  storageBucket: "information-56b87.appspot.com",
-  messagingSenderId: "20695122318",
-  appId: "1:20695122318:web:7de966d779c4bcc4dea4df",
-  measurementId: "G-9FM7MD1TS5",
+  authDomain: config.FirebaseAuthDomain,
+  databaseURL: config.FirebaseDatabaseURL,
+  projectId: config.ProjectID,
+  storageBucket: config.StorageBucket,
+  messagingSenderId: config.MessagingSenderID,
+  appId: config.AppID,
+  measurementId: config.AppMeasurementID,
 };
 
 console.log(firebaseConfig);
@@ -34,7 +34,7 @@ ui.start("#firebaseui-auth-container", {
       // Return type determines whether we continue the redirect automatically
       // or whether we leave that to developer to handle.
       console.log(authResult, redirectUrl);
-      return true;
+      return false;
     },
     uiShown: function () {
       // The widget is rendered.
@@ -45,14 +45,12 @@ ui.start("#firebaseui-auth-container", {
       }
     },
   },
-  // Will use popup for IDP Providers sign-in flow instead of the default, redirect.
-  // signInFlow: 'popup',
-  signInSuccessUrl: "/main",
+  // signInSuccessUrl: "/main",
   signInOptions: [
     {
       provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       // scopes: [
-      //   'https://www.googleapis.com/auth/contacts.readonly'
+      //   'https://www.googleapis.com/auth/youtube.channel-memberships.creator',
       // ],
       customParameters: {
         // Forces account selection even when one account
@@ -70,9 +68,9 @@ ui.start("#firebaseui-auth-container", {
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
+      {/* <BrowserRouter>
         <Routes></Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
       <div id="firebaseui-auth-container"></div>
       <div id="loader">Loading...</div>
     </div>

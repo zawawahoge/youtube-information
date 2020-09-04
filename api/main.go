@@ -37,6 +37,11 @@ func main() {
 	handler := func(resp http.ResponseWriter, req *http.Request) {
 		allowCors(resp, req)
 		wrappedGrpc.ServeHTTP(resp, req)
+		c := &http.Cookie{
+			SameSite: http.SameSiteNoneMode,
+			Secure:   true,
+		}
+		http.SetCookie(resp, c)
 	}
 	httpServer := http.Server{
 		Addr:    fmt.Sprintf(":%s", port),
