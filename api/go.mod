@@ -4,9 +4,10 @@ go 1.14
 
 require (
 	cloud.google.com/go/firestore v1.3.0 // indirect
-	firebase.google.com/go v3.13.0+incompatible // indirect
+	firebase.google.com/go v3.13.0+incompatible
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
 	github.com/golang/protobuf v1.4.2
+	github.com/google/martian v2.1.0+incompatible
 	github.com/googleapis/gax-go v1.0.3 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/grpc-ecosystem/go-grpc-middleware v1.2.1

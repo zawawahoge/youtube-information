@@ -6,8 +6,8 @@ import (
 	"log"
 	"net/http"
 
+	firebase "firebase.google.com/go"
 	"google.golang.org/grpc"
-	"google.golang.org/grpc/metadata"
 	"google.golang.org/grpc/reflection"
 
 	"github.com/improbable-eng/grpc-web/go/grpcweb"
@@ -23,18 +23,24 @@ func main() {
 	logger := logrus.New()
 	conf := config.MustConfigFromEnv()
 
+	firebaseApp, err := firebase.NewApp(context.Background(), nil)
+	if err != nil {
+		log.Fatalf("error initializing app: %v\n", err)
+	}
+
 	port := conf.Port
 	if port == "" {
 		port = "9090"
 		log.Printf("Defaulting to port %s", port)
 	}
 
-	youtube := serviceimpl.NewYoutubeServiceServer(conf.YoutubeConfig)
-	f := factory.New(youtube)
+	youtube := serviceimpl.NewYoutubeService(conf.YoutubeConfig)
+	authService := serviceimpl.NewAuthService(firebaseApp)
+	f := factory.New(youtube, authService)
 
 	grpcServer := grpc.NewServer(
 		grpc.ChainUnaryInterceptor(
-			grpcauth.UnaryServerInterceptor(myAuthFunction),
+			grpcauth.UnaryServerInterceptor(authService.GetAuthFunc()),
 		),
 	)
 	apiservice.RegisterCommonServiceServer(grpcServer, f.NewCommonServiceServer())
@@ -65,24 +71,4 @@ func allowCors(resp http.ResponseWriter, req *http.Request) {
 	resp.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
 	resp.Header().Set("Access-Control-Expose-Headers", "grpc-status, grpc-message")
 	resp.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, XMLHttpRequest, x-user-agent, x-grpc-web, grpc-status, grpc-message, authorization")
-}
-
-func myAuthFunction(ctx context.Context) (context.Context, error) {
-	md, ok := metadata.FromIncomingContext(ctx)
-	if !ok {
-		return nil, fmt.Errorf("not found metadata")
-	}
-	if _, ok := md["authorization"]; !ok {
-		return nil, fmt.Errorf("no authorization key")
-	}
-	tokens := md["authorization"]
-	if len(tokens) == 0 {
-		return nil, fmt.Errorf("unauthenticated")
-	}
-	if tokens[0] == "" {
-		return nil, fmt.Errorf("unauthenticated")
-	}
-
-	fmt.Println("I got", tokens[0])
-	return ctx, nil
 }

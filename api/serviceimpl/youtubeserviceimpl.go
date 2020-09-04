@@ -11,8 +11,8 @@ type youtubeServiceServer struct {
 	config config.YoutubeConfig
 }
 
-// NewYoutubeServiceServer is constructor of youtube service server.
-func NewYoutubeServiceServer(config config.YoutubeConfig) service.YoutubeServiceServer {
+// NewYoutubeService is constructor of youtube service server.
+func NewYoutubeService(config config.YoutubeConfig) service.YoutubeService {
 	return &youtubeServiceServer{
 		config: config,
 	}

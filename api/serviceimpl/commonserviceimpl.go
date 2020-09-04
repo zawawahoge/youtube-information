@@ -13,11 +13,11 @@ import (
 )
 
 type commonServiceServer struct {
-	youtube service.YoutubeServiceServer
+	youtube service.YoutubeService
 }
 
 // NewCommonServiceServer is constructor of common service server.
-func NewCommonServiceServer(youtube service.YoutubeServiceServer) apiservice.CommonServiceServer {
+func NewCommonServiceServer(youtube service.YoutubeService) apiservice.CommonServiceServer {
 	return &commonServiceServer{
 		youtube: youtube,
 	}
@@ -26,6 +26,7 @@ func NewCommonServiceServer(youtube service.YoutubeServiceServer) apiservice.Com
 func (s *commonServiceServer) ListSubscribedChannels(ctx context.Context, req *apiservice.ListSubscribedChannelsRequest) (*apiservice.ListSubscribedChannelsResponse, error) {
 	logger := logrus.New()
 	logger.Println(req)
+	logger.Println(ctx.Value(service.AuthContextKey("UID")))
 
 	var channels []*model.Channel
 	var apiChannels []*apiservice.Channel

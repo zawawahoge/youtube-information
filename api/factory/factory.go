@@ -12,15 +12,18 @@ type Factory interface {
 }
 
 type factory struct {
-	youtube service.YoutubeServiceServer
+	youtube service.YoutubeService
+	auth    service.AuthService
 }
 
 // New is constructor of factory.
 func New(
-	youtube service.YoutubeServiceServer,
+	youtube service.YoutubeService,
+	auth service.AuthService,
 ) Factory {
 	return &factory{
 		youtube: youtube,
+		auth:    auth,
 	}
 }
 
