@@ -1,5 +1,5 @@
 export default {
-  APIUrl: process.env.REACT_APP_API_URL ?? "",
+  APIURL: process.env.REACT_APP_API_URL ?? "",
   FirebaseAPIKey: process.env.REACT_APP_FIREBASE_API_KEY ?? "",
   FirebaseAuthDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN ?? "",
   FirebaseDatabaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL ?? "",
